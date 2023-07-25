@@ -1,0 +1,56 @@
+{
+  "general":{
+    "location": "west europe",
+    "rg_name": "Azure-lb-json",
+    "admin_username": "radoslv",
+    "ssh_rg_name": "ssh-keys",
+    "ssh_key_name": "bgapp-ssh"
+  },
+
+  "web_vms": {
+    "web_vm_size": "Standard_B2s",
+    "web_vm_name": "bgapp-web-vm",
+    "web_vm_count": "3",
+    "web_vm_publisher": "Canonical",
+    "web_vm_offer": "0001-com-ubuntu-server-jammy",
+    "web_vm_sku": "22_04-lts",
+    "web_vm_version": "latest",
+    "web_availability_set_name": "web_vms_a-set",
+    "web_vm_extension_name": "web_vm_extension",
+    "web_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/terraform-azure/main/provisioning/provision-web.sh",
+    "web_provision_command_exec": "bash provision-web.sh"
+  },
+
+  "db_vm": {
+    "db_vm_size": "Standard_B2s",
+    "db_vm_name": "bgapp-db-vm",
+    "db_vm_publisher": "Canonical",
+    "db_vm_offer": "0001-com-ubuntu-server-jammy",
+    "db_vm_sku": "22_04-lts",
+    "db_vm_version": "latest",
+    "db_vm_extension_name": "db_vm_extension",
+    "db_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/terraform-azure/main/provisioning/provision-db.sh",
+    "db_provision_command_exec": "bash provision-db.sh"
+  },
+
+  "jh_vm": {
+    "jh_vm_size": "Standard_B2s",
+    "ssh_key_jh_name": "jump-host-bgapp",
+    "jh_vm_name": "jump-host-vm",
+    "jh_vm_publisher": "Canonical",
+    "jh_vm_offer": "0001-com-ubuntu-server-jammy",
+    "jh_vm_sku": "22_04-lts",
+    "jh_vm_version": "latest",
+    "key_file_name": "bgapp-ssh.pem",
+    "key_file_location": "/mnt/c/Users/RadoslavStoimenov/keys/jump-host-bgapp.pem"
+  },
+
+  "network": {
+    "vnet_name": "bgapp-vnet",
+    "vnet_address_space": "10.69.69.0/24",
+    "web_subnet": "10.69.69.0/26",
+    "db_subnet": "10.69.69.64/26",
+    "jh_subnet": "10.69.69.128/26",
+    "private_dns_zone_name": "bgapp.test"
+  }
+}
