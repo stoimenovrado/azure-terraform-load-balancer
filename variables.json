@@ -41,13 +41,8 @@
     "jh_vm_offer": "0001-com-ubuntu-server-jammy",
     "jh_vm_sku": "22_04-lts",
     "jh_vm_version": "latest",
-<<<<<<< HEAD
     "key_file_name": "<Key file name here>",
     "key_file_location": "<Enter location and key here>"
-=======
-    "key_file_name": "bgapp-ssh.pem",
-    "key_file_location": "<Key file location here>"
->>>>>>> dfed331 (Added monitoring in AKS and some improvements)
   },
 
   "network": {
