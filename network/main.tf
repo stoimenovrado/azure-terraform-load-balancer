@@ -248,3 +248,12 @@ resource "azurerm_network_security_group" "jump_host" {
     destination_address_prefix = "*"
   }
 }
+
+# K8S Monitoring config below
+
+resource "azurerm_subnet" "monitoring" {
+  name                 = "Monitoring"
+  resource_group_name  = var.rg_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["${var.monitor_subnet}"]
+}

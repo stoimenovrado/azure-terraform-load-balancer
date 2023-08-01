@@ -31,6 +31,7 @@ module "network" {
   web_subnet            = local.json_vars.network.web_subnet
   db_subnet             = local.json_vars.network.db_subnet
   jh_subnet             = local.json_vars.network.jh_subnet
+  monitor_subnet        = local.json_vars.network.monitor_subnet
   private_dns_zone_name = local.json_vars.network.private_dns_zone_name
 }
 
@@ -99,4 +100,26 @@ module "jump-host" {
   key_file_name     = local.json_vars.jh_vm.key_file_name
   key_file_location = local.json_vars.jh_vm.key_file_location
   nic-jh            = module.network.azurerm_network_interface_jh
+}
+
+module "monitoring" {
+  source                                  = "./monitoring"
+  rg_name                                 = azurerm_resource_group.rg_name.name
+  location                                = azurerm_resource_group.rg_name.location
+  monitor-sub                             = module.network.azurerm_monitoring_subnet
+  monitoring_node_size                    = local.json_vars.monitoring.monitoring_node_size
+  monitoring_node_name                    = local.json_vars.monitoring.monitoring_node_name
+  monitoring_node_rg_name                 = local.json_vars.monitoring.monitoring_node_rg_name
+  monitoring_dns_prefix                   = local.json_vars.monitoring.monitoring_dns_prefix
+  monitoring_node_pool_name               = local.json_vars.monitoring.monitoring_node_pool_name
+  monitoring_node_count                   = local.json_vars.monitoring.monitoring_node_count
+  monitoring_namespace_provision_file     = local.json_vars.monitoring.monitoring_namespace_provision_file
+  monitoring_storage_provision_file       = local.json_vars.monitoring.monitoring_storage_provision_file
+  monitoring_grafanapvc_provision_file    = local.json_vars.monitoring.monitoring_grafanapvc_provision_file
+  monitoring_prometheuspvc_provision_file = local.json_vars.monitoring.monitoring_prometheuspvc_provision_file
+  monitoring_promdeploy_provision_file    = local.json_vars.monitoring.monitoring_promdeploy_provision_file
+  monitoring_promservice_provision_file   = local.json_vars.monitoring.monitoring_promservice_provision_file
+  monitoring_grafdeploy_provision_file    = local.json_vars.monitoring.monitoring_grafdeploy_provision_file
+  monitoring_lb_provision_file            = local.json_vars.monitoring.monitoring_lb_provision_file
+  # kubectl_command                         = var.kubectl_command
 }

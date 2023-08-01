@@ -17,7 +17,7 @@
     "web_vm_version": "latest",
     "web_availability_set_name": "web_vms_a-set",
     "web_vm_extension_name": "web_vm_extension",
-    "web_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/terraform-azure/main/provisioning/provision-web.sh",
+    "web_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/bgapp-provision/provision-web.sh",
     "web_provision_command_exec": "bash provision-web.sh"
   },
 
@@ -29,7 +29,7 @@
     "db_vm_sku": "22_04-lts",
     "db_vm_version": "latest",
     "db_vm_extension_name": "db_vm_extension",
-    "db_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/terraform-azure/main/provisioning/provision-db.sh",
+    "db_provision_file_uri": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/bgapp-provision/provision-db.sh",
     "db_provision_command_exec": "bash provision-db.sh"
   },
 
@@ -41,8 +41,13 @@
     "jh_vm_offer": "0001-com-ubuntu-server-jammy",
     "jh_vm_sku": "22_04-lts",
     "jh_vm_version": "latest",
+<<<<<<< HEAD
     "key_file_name": "<Key file name here>",
     "key_file_location": "<Enter location and key here>"
+=======
+    "key_file_name": "bgapp-ssh.pem",
+    "key_file_location": "<Key file location here>"
+>>>>>>> dfed331 (Added monitoring in AKS and some improvements)
   },
 
   "network": {
@@ -51,6 +56,24 @@
     "web_subnet": "10.69.69.0/26",
     "db_subnet": "10.69.69.64/26",
     "jh_subnet": "10.69.69.128/26",
+    "monitor_subnet": "10.69.69.192/26",
     "private_dns_zone_name": "bgapp.test"
+  },
+  
+  "monitoring": {
+    "monitoring_node_size": "Standard_DS2_v2",
+    "monitoring_node_name": "k8s-monitoring",
+    "monitoring_node_rg_name": "Monitoring-k8s-cluster",
+    "monitoring_dns_prefix": "k8s-monitoring",
+    "monitoring_node_pool_name": "default",
+    "monitoring_node_count": "1",
+    "monitoring_namespace_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/namespace.yaml",
+    "monitoring_storage_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/ps.yaml",
+    "monitoring_grafanapvc_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/graf-pvc.yaml",
+    "monitoring_prometheuspvc_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/prom-pvc.yaml",
+    "monitoring_promdeploy_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/prometheus-deployment.yaml",
+    "monitoring_promservice_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/prometheus-service.yaml",
+    "monitoring_grafdeploy_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/grafana-deployment.yaml",
+    "monitoring_lb_provision_file": "https://raw.githubusercontent.com/stoimenovrado/k8s-and-provisioning/main/monitoring/monitoring-lb.yaml"
   }
 }

@@ -94,3 +94,7 @@
 # variable "private_dns_zone_name"{
 #     description = "Private DNS Zone Name"
 # }
+# variable "kubectl_command"{
+#     description = "Kubectl command (Apply or Delete)"
+# #    default = "kubectl apply"
+# }

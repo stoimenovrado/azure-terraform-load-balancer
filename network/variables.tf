@@ -6,6 +6,7 @@ variable "vnet_address_space"{}
 variable "web_subnet"{}
 variable "db_subnet"{}
 variable "jh_subnet"{}
+variable "monitor_subnet"{}
 variable "private_dns_zone_name"{}
 variable "web-prip" {
   type = list(string)
